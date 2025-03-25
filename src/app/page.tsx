@@ -1,34 +1,48 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
-
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 export default function Home() {
+   // Track when the stats section comes into view
+   const [statsRef, statsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
   const portfolioItems = [
     {
       id: 1,
       title: "Earth's Palette",
       category: "Art Direction",
-      image: "https://ext.same-assets.com/969822492/4253944231.jpeg"
+      image: "https://ext.same-assets.com/979205381/3829689281.jpeg"
     },
     {
       id: 2,
       title: "Exploring Visual Vibrancy",
       category: "Branding",
-      image: "https://ext.same-assets.com/979205381/4253944231.jpeg"
+      image: "https://burst.shopifycdn.com/photos/model-in-gold-fashion.jpg"
     },
     {
       id: 3,
       title: "Cosmic Chronicles",
       category: "Art Direction",
-      image: "https://ext.same-assets.com/969822492/2180965551.jpeg"
+      image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
     },
     {
       id: 4,
       title: "Wanderlust",
       category: "3D Commercial",
-      image: "https://ext.same-assets.com/979205381/2180965551.jpeg"
+      image: "https://img.freepik.com/free-psd/world-art-day-celebration-poster-template_23-2150197403.jpg?t=st=1742924596~exp=1742928196~hmac=74fa9c1ae95d11c51bbf779a502545756c4c94ae10dd711445750bb700bb0a36&w=740"
     },
     {
       id: 5,
+      title: "Binary Symphony",
+      category: "Art Direction",
+      image: "https://ext.same-assets.com/979205381/3829689281.jpeg"
+    },
+    {
+      id: 6,
       title: "Binary Symphony",
       category: "Art Direction",
       image: "https://ext.same-assets.com/979205381/3829689281.jpeg"
@@ -39,7 +53,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="container-kanik py-16 md:py-24">
-        <div className="mb-12">
+        <div className="flex mb-12 flex-col justify-center items-center">
           <div className="mono mb-2">51.5072 N, 0.1276 W</div>
           <h1 className="heading-xl mb-4">
             <span className="font-light text-muted-foreground">A digital Design</span>
@@ -77,22 +91,58 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="container-kanik py-20 md:py-32">
+      <section ref={statsRef} className="container-kanik py-20 md:py-32">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t pt-12">
           <div>
-            <h3 className="heading-lg mb-1">370+</h3>
+            <h3 className="heading-lg mb-1">
+              {statsInView ? (
+                <CountUp 
+                  end={370} 
+                  duration={2} 
+                  suffix="+" 
+                  className="text-transparent bg-clip-text bg-black"
+                />
+              ) : '0+'}
+            </h3>
             <p className="mono">Projects</p>
           </div>
           <div>
-            <h3 className="heading-lg mb-1">30+</h3>
+            <h3 className="heading-lg mb-1">
+              {statsInView ? (
+                <CountUp 
+                  end={30} 
+                  duration={2} 
+                  suffix="+" 
+                  className="text-transparent bg-clip-text bg-black"
+                />
+              ) : '0+'}
+            </h3>
             <p className="mono">Clients</p>
           </div>
           <div>
-            <h3 className="heading-lg mb-1">150+</h3>
+            <h3 className="heading-lg mb-1">
+              {statsInView ? (
+                <CountUp 
+                  end={150} 
+                  duration={2} 
+                  suffix="+" 
+                  className="text-transparent bg-clip-text bg-black"
+                />
+              ) : '0+'}
+            </h3>
             <p className="mono">Awards</p>
           </div>
           <div>
-            <h3 className="heading-lg mb-1">250K</h3>
+            <h3 className="heading-lg mb-1">
+              {statsInView ? (
+                <CountUp 
+                  end={250} 
+                  duration={2} 
+                  suffix="K" 
+                  className="text-transparent bg-clip-text bg-black"
+                />
+              ) : '0K'}
+            </h3>
             <p className="mono">Followers</p>
           </div>
         </div>
