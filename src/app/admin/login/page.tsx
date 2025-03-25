@@ -125,11 +125,10 @@ export default function LoginPage() {
 
         <div className="mt-6 rounded-md bg-muted/50 p-4">
           <p className="text-xs text-muted-foreground">
-            <strong>Demo Credentials:</strong>
+            <strong>Warning:</strong>
             <br />
-            Admin: admin@kanik.com / admin123
-            <br />
-            Editor: editor@kanik.com / editor123
+            All actions are recorded.
+        
           </p>
         </div>
       </div>

@@ -8,15 +8,14 @@ import {
   ReactNode
 } from "react";
 
-// Define the user type
 type User = {
   id: string;
   email: string;
   name: string;
   role: "admin" | "editor";
+  // Note: Password is NOT included here since we don't store it client-side
 } | null;
 
-// Define the authentication context type
 type AuthContextType = {
   user: User;
   loading: boolean;
@@ -25,74 +24,55 @@ type AuthContextType = {
   isAuthenticated: boolean;
 };
 
-// Create the authentication context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-// Mock user data for demonstration (in a real app, this would come from an API)
-const MOCK_USERS = [
-  {
-    id: "1",
-    email: "admin@kanik.com",
-    password: "admin123", // In a real app, passwords would be hashed
-    name: "Admin User",
-    role: "admin" as const,
-  },
-  {
-    id: "2",
-    email: "editor@kanik.com",
-    password: "editor123",
-    name: "Editor User",
-    role: "editor" as const,
-  },
-];
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in by retrieving from localStorage
-    const storedUser = localStorage.getItem("kanik-user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const initializeAuth = async () => {
+      const storedUser = localStorage.getItem("kanik-user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+      setLoading(false);
+    };
+    initializeAuth();
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Mock login functionality (replace with real API call in production)
     setLoading(true);
     try {
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-      const foundUser = MOCK_USERS.find(
-        (u) => u.email === email && u.password === password
-      );
-
-      if (foundUser) {
-        // Create user object without password
-        const { password, ...userWithoutPassword } = foundUser;
-        setUser(userWithoutPassword);
-
-        // Store user in localStorage for persistence
-        localStorage.setItem("kanik-user", JSON.stringify(userWithoutPassword));
-        setLoading(false);
-        return true;
+      if (!response.ok) {
+        throw new Error(await response.text());
       }
 
-      setLoading(false);
-      return false;
+      const userData = await response.json();
+      setUser(userData);
+      localStorage.setItem("kanik-user", JSON.stringify(userData));
+      return true;
     } catch (error) {
       console.error("Login error:", error);
-      setLoading(false);
       return false;
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("kanik-user");
+    // Optional: Call your logout API endpoint if you have one
+    // fetch('/api/auth/logout', { method: 'POST' });
   };
 
   const value = {

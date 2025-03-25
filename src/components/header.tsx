@@ -14,13 +14,13 @@ export function Header() {
           <MainNav className="hidden md:flex" />
         </div>
         <div className="flex items-center gap-4">
-          {/* <Link
-            href="#"
+          <ThemeToggle/>
+          <Link
+            href="/admin/dashboard"
             className="hidden rounded-md px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground md:inline-block"
           >
-            Get Theme
-          </Link> */}
-          <ThemeToggle/>
+            Admin
+          </Link>
           <MobileMenu />
         </div>
       </div>
