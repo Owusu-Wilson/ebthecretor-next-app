@@ -4,11 +4,14 @@ import { Role } from '@prisma/client';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // Await the params here
 ) {
   try {
+    // Await the params since it is a Promise
+    const { id } = await params;
+
     const user = await prisma.user.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: {
         id: true,
         name: true,
@@ -34,15 +37,19 @@ export async function GET(
   }
 }
 
+
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // Await the params here
 ) {
   try {
+    // Await the params since it is a Promise
+    const { id } = await params;
+    
     const { name, email, role } = await request.json();
 
     const updatedUser = await prisma.user.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         email,
