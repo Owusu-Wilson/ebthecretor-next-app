@@ -14,6 +14,18 @@ pnpm dev
 bun dev
 ```
 
+### Seed Database
+
+```bash
+npmx ts-node src/scripts/seed.ts
+# or
+yarn ts-node src/scripts/seed.ts
+# or
+pnpm ts-node src/scripts/seed.ts
+# or
+bunx ts-node src/scripts/seed.ts
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

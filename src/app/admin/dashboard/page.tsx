@@ -11,7 +11,8 @@ import {
   MessageSquare,
   Settings,
   Users,
-  LogOut
+  LogOut,
+  ListIcon
 } from "lucide-react";
 
 type StatCard = {
@@ -111,8 +112,20 @@ export default function AdminDashboard() {
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </Link>
+
               <Link
-                href="/admin/portfolio"
+                href="/admin/categories"
+                className="flex items-center justify-between p-3 rounded-md bg-background border hover:bg-muted/50"
+              >
+                <div className="flex items-center">
+                  <ListIcon className="mr-2 h-5 w-5 text-muted-foreground" />
+                  <span>Portfolio Categories</span>
+                </div>
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
+              
+              <Link
+                href="/admin/portfolios"
                 className="flex items-center justify-between p-3 rounded-md bg-background border hover:bg-muted/50"
               >
                 <div className="flex items-center">
@@ -121,6 +134,7 @@ export default function AdminDashboard() {
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </Link>
+            
               <Link
                 href="/admin/team"
                 className="flex items-center justify-between p-3 rounded-md bg-background border hover:bg-muted/50"
@@ -236,7 +250,7 @@ export default function AdminDashboard() {
                     Create New Post
                   </Link>
                   <Link
-                    href="/admin/portfolio/new"
+                    href="/admin/portfolios/new"
                     className="bg-primary text-primary-foreground py-3 px-4 rounded-md text-center hover:bg-primary/90"
                   >
                     Add Portfolio Item

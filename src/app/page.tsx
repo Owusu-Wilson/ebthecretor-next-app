@@ -69,7 +69,7 @@ export default function Home() {
           {portfolioItems.map((item) => (
             <Link
               key={item.id}
-              href="/about-us" // Changed to a static route
+              href="/portfolio/case-study" // Changed to a static route
               className="group relative block overflow-hidden transition-all duration-300"
             >
               <div className="relative aspect-[4/3] overflow-hidden">

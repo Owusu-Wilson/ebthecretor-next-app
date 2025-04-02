@@ -158,7 +158,7 @@ export default function CaseStudy() {
       </section>
 
       {/* Testimonial */}
-      <section className="container-kanik py-16 bg-muted -mx-5 md:-mx-8 px-5 md:px-8 mb-20">
+      <section className="container-kanik py-16 bg-muted md:-mx-8 px-5 md:px-8 mb-20">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto mb-6">

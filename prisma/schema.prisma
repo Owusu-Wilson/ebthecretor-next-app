@@ -71,3 +71,55 @@ model Session {
 
   @@map("sessions")
 }
+
+
+// -------------------------------------
+model Portfolio {
+  id          String     @id @default(uuid())
+  title       String
+  description String?
+  coverImage  String     @map("cover_image")  // Main display image
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  // Category relation (kept as per your request)
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
+  
+  // Files relation (multiple attachments)
+  files      PortfolioFile[]
+  
+  // Tags (comma-separated string)
+  tags       String
+  
+  @@index([categoryId])
+  @@map("portfolios")
+}
+
+model PortfolioFile {
+  id          String    @id @default(uuid())
+  url         String
+  name        String
+  type        String    // "image", "video", "document", "pdf", etc.
+  size        Int       // File size in bytes
+  portfolioId String
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
+  createdAt   DateTime @default(now())
+  
+  @@index([portfolioId])
+  @@map("portfolio_files")
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  // Relations
+  portfolios Portfolio[]
+  
+  @@map("categories")
+}

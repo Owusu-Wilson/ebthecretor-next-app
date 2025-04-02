@@ -14,49 +14,14 @@ interface MainNavProps {
 export function MainNav({ className }: MainNavProps) {
   return (
     <nav className={cn("flex gap-6", className)}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button className="flex items-center font-medium">
-            Home
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-44">
-          <DropdownMenuItem asChild>
-            <Link href="/">Main Home</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Creative Agency</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Personal Portfolio</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Portfolio Masonry</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button className="flex items-center font-medium">
-            Pages
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-44">
-          <DropdownMenuItem asChild>
-            <Link href="/about-us">About Us</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Our Team</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">About Me</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Contact Us</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+
+      <Link href="/" className="font-medium">
+        Home
+      </Link>
+      <Link href="/about" className="font-medium">
+        About
+      </Link>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -88,22 +53,20 @@ export function MainNav({ className }: MainNavProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-44">
           <DropdownMenuItem asChild>
-            <Link href="#">Blog Grid</Link>
+            <Link href="#">Architecture</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="#">Blog Masonry</Link>
+            <Link href="#">Graphic Design</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="#">Blog Metro</Link>
+            <Link href="#">Blog Classic</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="#">Blog Sidebar</Link>
-          </DropdownMenuItem>
+         
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Link href="#" className="font-medium">
-        Features
+      <Link href="/contact-us" className="font-medium">
+        Contact
       </Link>
     </nav>
   );

@@ -9,7 +9,7 @@ export function Header() {
       <div className="container-kanik flex h-16 items-center justify-between">
         <div className="flex items-center gap-6 md:gap-10">
           <Link href="/" className="flex items-center font-semibold">
-            <span className="text-lg font-semibold tracking-tight">KANIK</span>
+            <span className="text-lg font-semibold tracking-tight">ebthecreator</span>
           </Link>
           <MainNav className="hidden md:flex" />
         </div>

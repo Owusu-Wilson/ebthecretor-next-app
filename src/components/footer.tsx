@@ -87,7 +87,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between pt-8 border-t">
           <div className="mono">51.5072 N, 0.1276 W</div>
           <div className="mono">2025</div>
-          <div className="mono">hello@neuronthemes.com</div>
+          <div className="mono">info@ebthecreator.com</div>
         </div>
       </div>
     </footer>
