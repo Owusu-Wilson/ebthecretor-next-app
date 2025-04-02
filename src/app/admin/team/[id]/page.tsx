@@ -7,24 +7,19 @@ import ProtectedRoute from '@/components/protected-route';
 import Link from 'next/link';
 import { ArrowLeft, LogOut, Save } from 'lucide-react';
 
-export default function EditUserForm({ params }: { params: { id: string } }) {
+export default function EditUserForm() {
   const { user: currentUser, logout } = useAuth();
   const router = useRouter();
+  const { id: userId } = useParams(); // ✅ Correct way to get params
   const [loading, setLoading] = useState(true);
   const [formLoading, setFormLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    role: 'user' as const
+    role: 'user' as const,
   });
-
-  // Proper way to access params in Next.js 14+
-   // Correct way to get params in Next.js 14+
-   const { id: userId } = useParams()
-  
-  
 
   // Fetch user data on mount
   useEffect(() => {
@@ -38,7 +33,7 @@ export default function EditUserForm({ params }: { params: { id: string } }) {
         setFormData({
           name: userData.name,
           email: userData.email,
-          role: userData.role
+          role: userData.role,
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load user');
@@ -63,7 +58,7 @@ export default function EditUserForm({ params }: { params: { id: string } }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -82,7 +77,7 @@ export default function EditUserForm({ params }: { params: { id: string } }) {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
