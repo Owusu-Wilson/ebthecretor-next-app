@@ -71,28 +71,9 @@ export default function AdminTeamMembers() {
   }
 
   return (
-    <ProtectedRoute>
+   
       <div className="min-h-screen bg-muted/30">
-        {/* Admin header */}
-        <header className="bg-background border-b">
-          <div className="container-kanik flex h-16 items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/admin/dashboard" className="font-bold text-xl">
-                Kanik Admin
-              </Link>
-              <span className="text-sm text-muted-foreground">
-                Welcome back, {user?.name}
-              </span>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="flex items-center text-sm text-muted-foreground hover:text-foreground"
-            >
-              <LogOut className="mr-1 h-4 w-4" />
-              Logout
-            </button>
-          </div>
-        </header>
+    
 
         <div className="container-kanik py-8">
           <div className="flex justify-between items-center mb-6">
@@ -252,6 +233,6 @@ export default function AdminTeamMembers() {
           </div>
         </div>
       </div>
-    </ProtectedRoute>
+   
   );
 }
