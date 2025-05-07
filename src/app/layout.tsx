@@ -1,10 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from "next"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CookieBanner } from "@/components/cookie-banner"
-import { ThemeProvider } from "@/components/theme-provider"
-import { AuthProvider } from "@/contexts/AuthContext"
+import ClientLayout from "./client-layout" // 👈 new
 
 export const metadata: Metadata = {
   title: "Kanik - Minimal Digital Agency Clone",
@@ -13,22 +13,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans">
-        <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <CookieBanner />
-            </div>
-          </ThemeProvider>
-        </AuthProvider>
+        <ClientLayout>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CookieBanner />
+          </div>
+        </ClientLayout>
       </body>
     </html>
   )
